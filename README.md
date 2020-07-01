@@ -11,7 +11,7 @@ It is also [covered in many books](https://www.google.com/search?q=903.3+116+for
 The research was done in the 1920s, winding up as one part of the International
 Commission on Illumination (CIE) 1931 standard.
 
-Fade a PWM LED out smoothly:  
+Use it to smoothly fade an LED:  
 _This example assumes [CircuitPython](https://circuitpython.org/) or
 [adafruit-blinka](https://pypi.org/project/Adafruit-Blinka/)._
 
@@ -28,7 +28,11 @@ while True:
         time.sleep(0.02)
 ```
 
-Usage with Pillow to make an antialiased font shine:  
+It is also useful for the RGB values you send to programmable LED strips. Those
+are also linear fraction of on-time PWM.
+
+Use it with [Pillow](https://pypi.org/project/Pillow/) to make an
+antialiased font shine rather than look like a bold blur:  
 _This example assumes a RPi connected to an [I2C Adafruit charlieplexed
 LED matrix](https://www.adafruit.com/?q=IS31FL3731)._
 
