@@ -19,30 +19,15 @@ matrix fonts?  You need to correct your raw linear brightness values for
 human eyeball persistence of vision perception sensitivity.
 
 Otherwise known as the CIE 1931 Lightness curve.
- https://www.photonstophotos.net/GeneralTopics/Exposure/Psychometric_Lightness_and_Gamma.htm
-Also covered in many books
- https://www.google.com/search?q=903.3+116+formula&tbm=bks
 
-Fade a PWM LED out smoothly:
+Usage:
 
->>> PWM = pwm_lightness.get_pwm_table(0xffff, max_input=100)
->>> output_pin = pulseio.PWMOut(...)  # or analogio.AnalogOut(...)
->>> for v in range(100, -1, -1):
-...     output_pin.value = PWM[v]
-...     time.sleep(0.01)
+>>> pwm_lightness.get_pwm_table(42)
 
-Usage with Pillow:
-
->>> BRIGHTNESS = 120  # Out of 255, the default max_input.
->>> PWM = pwm_lightness.get_pwm_table(BRIGHTNESS)
->>> font = PIL.ImageFont.truetype('fonts/RobotoCondensed-Regular.ttf', 15)
->>> image = PIL.Image.new('L', (16,9), 0)
->>> draw = PIL.ImageDraw.Draw(image)
->>> # fill=255 gives us the most antialiasing detail, we control overall
->>> # brightness via our PWM table.
->>> draw.text((0,0), '?', fill=255, font=font)
->>> image = image.point(PWM)  # Corrects linear values for PWM lightness.
->>> adafruit_is31fl3731_matrix.image(image)  # Send pixels to your LED display.
+Returns a table mapping integer values 0-255 to brightness adjusted values
+in the range 0-42.  Parameters control both the table size (range of input
+values) and the range of output values.  All integers.  Tables are cached
+to avoid recomputation.
 """
 
 _pwm_tables = {}  # Our cache.
