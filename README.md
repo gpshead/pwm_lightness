@@ -53,8 +53,8 @@ image = image.transpose(PIL.Image.ROTATE_90)  # Match the matrix orientation.
 led_matrix.image(image)  # Send pixels to our LED display.
 ```
 
-This code also works on CircuitPython or MicroPython microcontrollers so long
-as your build has floating point enabled.  Though for those environments
+This code does work on CircuitPython or MicroPython microcontrollers so long
+as your build has floating point enabled.  In microcontroller environments
 recomputing a table on device is often overkill.  Precompute the table(s) you
 need offline and store them as data to save precious RAM, no on device floating
 point required.
