@@ -30,11 +30,16 @@ values) and the range of output values.  All integers.  Tables are cached
 to avoid recomputation.
 """
 
+try:
+    from typing import Sequence
+except ImportError:
+    pass
+
 _pwm_tables = {}  # Our cache.
 
 
 def get_pwm_table(max_output: int,
-                  max_input: int = 255) -> 'typing.Sequence[int]':
+                  max_input: int = 255) -> 'Sequence[int]':
     """Returns a table mapping 0..max_input to int PWM values.
 
     Computed upon the first call with given value, cached thereafter.

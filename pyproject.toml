@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 40.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py{36,37,38,39},pypy3
+isolated_build = true
+skip_missing_interpreters = true
+
+# minimum tox version
+minversion = 3.3.0
+
+[testenv]
+deps =
+    check-manifest >= 0.42
+    pytest
+    pytype
+commands =
+    check-manifest --ignore 'tox.ini,tests/**'
+    python setup.py check -m -s
+    pytype *.py
+    py.test tests {posargs}
+"""
