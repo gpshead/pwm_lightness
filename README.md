@@ -11,26 +11,26 @@ It is also [covered in many books](https://www.google.com/search?q=903.3+116+for
 Fade a PWM LED out smoothly:
 
 ```
->>> PWM = pwm_lightness.get_pwm_table(0xffff, max_input=100)
->>> output_pin = pulseio.PWMOut(...)  # or analogio.AnalogOut(...)
->>> for v in range(100, -1, -1):
-...     output_pin.value = PWM[v]
-...     time.sleep(0.01)
+PWM = pwm_lightness.get_pwm_table(0xffff, max_input=100)
+output_pin = pulseio.PWMOut(...)  # or analogio.AnalogOut(...)
+for v in range(100, -1, -1):
+    output_pin.value = PWM[v]
+    time.sleep(0.01)
 ```
 
 Usage with Pillow to make those antialiased fonts shine:
 
 ```
->>> BRIGHTNESS = 120  # Out of 255, the default max_input.
->>> PWM = pwm_lightness.get_pwm_table(BRIGHTNESS)
->>> font = PIL.ImageFont.truetype('fonts/RobotoCondensed-Regular.ttf', 15)
->>> image = PIL.Image.new('L', (16,9), 0)
->>> draw = PIL.ImageDraw.Draw(image)
->>> # fill=255 gives us the most antialiasing detail, we control overall
->>> # brightness via our PWM table.
->>> draw.text((0,0), '?', fill=255, font=font)
->>> image = image.point(PWM)  # Corrects linear values for PWM lightness.
->>> adafruit_is31fl3731_matrix.image(image)  # Send pixels to your LED display.
+BRIGHTNESS = 120  # Out of 255, the default max_input.
+PWM = pwm_lightness.get_pwm_table(BRIGHTNESS)
+font = PIL.ImageFont.truetype('fonts/RobotoCondensed-Regular.ttf', 15)
+image = PIL.Image.new('L', (16,9), 0)
+draw = PIL.ImageDraw.Draw(image)
+# fill=255 gives us the most antialiasing detail, we control overall
+# brightness via our PWM table.
+draw.text((0,0), '?', fill=255, font=font)
+image = image.point(PWM)  # Corrects linear values for PWM lightness.
+adafruit_is31fl3731_matrix.image(image)  # Send pixels to your LED display.
 ```
 
 This code should work fine on a CircuitPython or MicroPython microcontroller so
