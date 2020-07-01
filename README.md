@@ -10,7 +10,7 @@ It is also [covered in many books](https://www.google.com/search?q=903.3+116+for
 
 Fade a PWM LED out smoothly:
 
-```
+```python
 PWM = pwm_lightness.get_pwm_table(0xffff, max_input=100)
 output_pin = pulseio.PWMOut(...)  # or analogio.AnalogOut(...)
 for v in range(100, -1, -1):
@@ -20,7 +20,7 @@ for v in range(100, -1, -1):
 
 Usage with Pillow to make those antialiased fonts shine:
 
-```
+```python
 BRIGHTNESS = 120  # Out of 255, the default max_input.
 PWM = pwm_lightness.get_pwm_table(BRIGHTNESS)
 font = PIL.ImageFont.truetype('fonts/RobotoCondensed-Regular.ttf', 15)
