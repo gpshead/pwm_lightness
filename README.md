@@ -1,5 +1,7 @@
 Provides lightness correction tables for eyeball pleasing LED brightness.
 
+![Antialiased question mark in portrait mode on a CharlieWing](images/questionmark.jpg)
+
 Want a smooth fade on your pulsing LEDs or get lovely antialiasing on LED
 matrix fonts?  You need to correct your raw linear brightness values for
 human eyeball persistence of vision perception sensitivity.
@@ -9,9 +11,9 @@ It is also [covered in many books](https://www.google.com/search?q=903.3+116+for
 The research was done in the 1920s, winding up as one part of the International
 Commission on Illumination (CIE) 1931 standard.
 
-Fade a PWM LED out smoothly.
+Fade a PWM LED out smoothly:  
 _This example assumes [CircuitPython](https://circuitpython.org/) or
-[adafruit-blinka](https://pypi.org/project/Adafruit-Blinka/)_:
+[adafruit-blinka](https://pypi.org/project/Adafruit-Blinka/)._
 
 ```python
 import time, board, pulseio, pwm_lightness
@@ -26,8 +28,9 @@ while True:
         time.sleep(0.02)
 ```
 
-Usage with Pillow to make an antialiased font shine.  _This example assumes a
-Raspberry Pi connected to an I2C Adafruit charlieplexed LED matrix._
+Usage with Pillow to make an antialiased font shine:  
+_This example assumes a RPi connected to an [I2C Adafruit charlieplexed
+LED matrix](https://www.adafruit.com/?q=IS31FL3731)._
 
 ```python
 import pwm_lightness
