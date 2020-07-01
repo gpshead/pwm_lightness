@@ -45,7 +45,7 @@ draw = PIL.ImageDraw.Draw(image)
 # overall brightness via the max range in our PWM table.
 draw.text((0,-1), '?', fill=255, font=font)
 image = image.point(PWM)  # Corrects linear 0..255 values for PWM lightness.
-image = image.transpose(Image.ROTATE_90)  # Match the matrix orientation
+image = image.transpose(PIL.Image.ROTATE_90)  # Match the matrix orientation
 led_matrix.image(image)  # Send pixels to our LED display.
 ```
 
