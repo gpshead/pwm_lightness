@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
+requires = ["setuptools >= 40.9.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py{36,37,38,39},pypy3
+envlist = py{36,37,38,39}
 isolated_build = true
 skip_missing_interpreters = true
 
@@ -18,8 +18,8 @@ deps =
     pytest
     pytype
 commands =
-    check-manifest --ignore 'tox.ini,tests/**'
-    python setup.py check -m -s
+    check-manifest --ignore 'tests/**,images/**'
+    python -c 'from setuptools import setup; setup()' check -m -s
     pytype *.py
     py.test tests {posargs}
 """
