@@ -20,9 +20,7 @@ floating point enabled).  In microcontroller environments recomputing a table
 on device is often overkill.  Precompute the table(s) you need using this
 library and store them as data to save precious RAM.
 
-## Examples
-
-### Smoothly fade an LED
+## Smoothly fade an LED
 
 _This example assumes [CircuitPython](https://circuitpython.org/) or
 [adafruit-blinka](https://pypi.org/project/Adafruit-Blinka/)._
@@ -42,7 +40,7 @@ while True:
 
 It is similarly useful with the RGB values you send to programmable LED strips.
 
-### Antialiased fonts or other 8-bit images
+## Improve antialiased fonts or other 8-bit images
 
 Shown here using [Pillow](https://pypi.org/project/Pillow/) to make an
 antialiased font shine rather than appearing as a bold blur:  
