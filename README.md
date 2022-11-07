@@ -26,9 +26,9 @@ _This example assumes [CircuitPython](https://circuitpython.org/) or
 [adafruit-blinka](https://pypi.org/project/Adafruit-Blinka/)._
 
 ```python
-import time, board, pulseio, pwm_lightness
+import time, board, pwmio, pwm_lightness
 PWM = pwm_lightness.get_pwm_table(0xffff, max_input=100)
-output_pin = pulseio.PWMOut(board.D13)
+output_pin = pwmio.PWMOut(board.D13)
 while True:
     for v in range(100, -1, -1):
         output_pin.duty_cycle = PWM[v]
