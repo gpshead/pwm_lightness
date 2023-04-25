@@ -15,16 +15,15 @@
 # limitations under the License.
 """Unittests for pwm_lightness."""
 
-import os
-import pwm_lightness
 import sys
 import unittest
+import pwm_lightness
 
 
 class TestPWMLightness(unittest.TestCase):
     def tearDown(self):
         pwm_lightness.clear_table_cache()
-        self.assertFalse(pwm_lightness._pwm_tables)
+        self.assertFalse(pwm_lightness._pwm_tables)  # pylint: disable=protected-access
 
     def test_get_pwm_table_defaults(self):
         byte_curve = pwm_lightness.get_pwm_table(255)
@@ -63,9 +62,9 @@ class TestPWMLightness(unittest.TestCase):
         self.assertIsNot(curve_300_a, curve_300_c)
 
     @unittest.skipIf(not sys.executable, "sys.executable required")
-    def test_command_line_interface_help(self):
+    def test_cli_help(self):
+        # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
-
         proc = subprocess.run(
             [sys.executable, "-m", "pwm_lightness"],
             stderr=subprocess.PIPE,
@@ -76,8 +75,8 @@ class TestPWMLightness(unittest.TestCase):
 
     @unittest.skipIf(not sys.executable, "sys.executable required")
     def test_command_line_interface(self):
+        # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
-
         # 0 is an invalid max_output value, error
         proc = subprocess.run(
             [sys.executable, "-m", "pwm_lightness", "0", "255"],

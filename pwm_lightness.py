@@ -78,11 +78,12 @@ if __name__ == "__main__":
     import sys
 
     try:
-        table = get_pwm_table(*(int(arg) for arg in sys.argv[1:]))
+        _table = get_pwm_table(*(int(arg) for arg in sys.argv[1:]))
     except Exception:
+        # pylint: disable=raise-missing-from
         raise RuntimeError(
             " Usage:  python3 -m pwm_lightness MAX_OUTPUT [MAX_INPUT]\n"
             "    MAX_OUTPUT:  The maximum integer output value.\n"
             "    MAX_INPUT:   The number of entries in generated lookup table.\n"
         )
-    print(",".join(str(v) for v in table))
+    print(",".join(str(v) for v in _table))
