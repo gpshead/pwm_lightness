@@ -52,8 +52,8 @@ Pre-generate a PWM table for use on a microcontroller
    $ python3 -m pwm_lightness --help
    ...
    RuntimeError:  Usage:  python3 -m pwm_lightness MAX_OUTPUT [MAX_INPUT]
-       MAX_OUTPUT:  The maximum integer output value.
-       MAX_INPUT:   The number of entries in the generated lookup table.
+       MAX_OUTPUT:  The maximum integer output value (brightness).
+       MAX_INPUT:   The maximum index into the lookup table.
    $ python3 -m pwm_lightness 88 32
    0,0,1,1,1,2,2,3,4,5,6,7,9,10,12,14,16,19,21,24,27,31,34,38,42,47,52,57,63,68,75,81,88
 

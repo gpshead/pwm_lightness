@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2020 Gregory P. Smith
+# SPDX-License-Identifier: Apache-2.0
+#
 # Copyright 2020 Gregory P. Smith
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Provides lightness correction tables for eyeball pleasing LED brightness.
+"""`pwm_lightness`
+=================================================
+
+Provides lightness correction tables for eyeball pleasing LED brightness.
 
 Want a smooth fade on your pulsing LEDs or get lovely antialiasing on LED
 matrix fonts?  You need to correct your raw linear brightness values for
@@ -20,14 +26,15 @@ human eyeball persistence of vision perception sensitivity.
 
 Otherwise known as the CIE 1931 Lightness curve.
 
-Usage:
+code-block:: python
 
->>> pwm_lightness.get_pwm_table(42)
+   >>> pwm_lightness.get_pwm_table(42)
+   [0, ..., 42]
 
-Returns a table mapping integer values 0-255 to brightness adjusted values
-in the range 0-42.  Parameters control both the table size (range of input
-values) and the range of output values.  All integers.  Tables are cached
-to avoid recomputation.
+Returns a table mapping integer values 0-255 to brightness adjusted values in
+the range 0-42.  Parameters control both the range of output values and the
+table size (range of lookup table indices aka "input" values).  All integers.
+Tables are cached to avoid recomputation.
 """
 
 try:
@@ -35,13 +42,22 @@ try:
 except ImportError:
     pass
 
+__version__ = "1.1.0beta1"
+__repo__ = "https://github.com/gpshead/pwm_lightness.git"
+
 _pwm_tables = {}  # Our cache.
 
 
 def get_pwm_table(max_output: int, max_input: int = 255) -> "Sequence[int]":
     """Returns a table mapping 0..max_input to int PWM values.
 
-    Computed upon the first call with given value, cached thereafter.
+    Computed upon the first call with given values, cached thereafter.
+
+    :param int max_output: The maximum output value; think of this as raw PWM
+       duty cycle or brightness when using this with LEDs.
+    :param int max_input: The maximum index into the lookup table. Indices are
+       zero based so the returned table will have max_input+1 length.  Defaults
+       to :const:`255`.
     """
     assert max_output > 0
     assert max_input > 0
@@ -76,14 +92,13 @@ def _cie1931(l_star: float) -> float:
 
 if __name__ == "__main__":
     import sys
-
     try:
         _table = get_pwm_table(*(int(arg) for arg in sys.argv[1:]))
     except Exception:
         # pylint: disable=raise-missing-from
         raise RuntimeError(
             " Usage:  python3 -m pwm_lightness MAX_OUTPUT [MAX_INPUT]\n"
-            "    MAX_OUTPUT:  The maximum integer output value.\n"
-            "    MAX_INPUT:   The number of entries in generated lookup table.\n"
+            "    MAX_OUTPUT:  The maximum integer output value (brightness).\n"
+            "    MAX_INPUT:   The maximum index into the lookup table.\n"
         )
     print(",".join(str(v) for v in _table))
