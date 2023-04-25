@@ -1,2 +1,5 @@
+# SPDX-FileCopyrightText: 2020 Gregory P. Smith
+# SPDX-License-Identifier: Apache-2.0
+
 include LICENSE README.rst pyproject.toml CODE_OF_CONDUCT.md
 exclude .*

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Gregory P. Smith
+# SPDX-License-Identifier: Apache-2.0
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
