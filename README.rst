@@ -1,13 +1,11 @@
-pwm_lightness module
-====================
+PWM lightness curve generator & Python module
+=============================================
 
 Generates lightness correction tables for eyeball pleasing LED brightness.
-
 
 .. image:: images/questionmark.jpg
    :target: images/questionmark.jpg
    :alt: Antialiased question mark in portrait mode on a CharlieWing
-
 
 Want a smooth fade on your pulsing LEDs? Want antialiasing on LED matrix fonts?
 Use this library to correct your raw linear brightness values for human eyeball
