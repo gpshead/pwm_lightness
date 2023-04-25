@@ -28,8 +28,8 @@ library and store them as data to save precious RAM.
 Smoothly fade an LED
 --------------------
 
-*This example assumes `CircuitPython <https://circuitpython.org/>`_ or
-`adafruit-blinka <https://pypi.org/project/Adafruit-Blinka/>`_.*
+This example assumes `CircuitPython <https://circuitpython.org/>`_ or
+`adafruit-blinka <https://pypi.org/project/Adafruit-Blinka/>`_.
 
 .. code-block:: python
 
@@ -49,7 +49,7 @@ It is similarly useful with the RGB values you send to programmable LED strips.
 Pre-generate a PWM table for use on a microcontroller
 -----------------------------------------------------
 
-.. code-block:: bash
+.. code-block::
 
    $ python3 -m pwm_lightness --help
    ...
@@ -65,9 +65,9 @@ Improve antialiased fonts or other 8-bit images
 -----------------------------------------------
 
 Shown here using `Pillow <https://pypi.org/project/Pillow/>`_ to make an
-antialiased font shine rather than appearing as a bold blur:\ :raw-html-m2r:`<br>`
-*This example assumes a RPi connected to an `I2C Adafruit charlieplexed
-LED matrix <https://www.adafruit.com/?q=IS31FL3731>`_.*
+antialiased font shine rather than appearing as a bold blur.  This example
+assumes a RPi connected to an `I2C Adafruit charlieplexed LED matrix
+<https://www.adafruit.com/?q=IS31FL3731>`_.
 
 .. code-block:: python
 
