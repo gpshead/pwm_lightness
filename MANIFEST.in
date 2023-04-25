@@ -1,1 +1,2 @@
-include LICENSE README.rst pyproject.toml
+include LICENSE README.rst pyproject.toml CODE_OF_CONDUCT.md
+exclude .*
