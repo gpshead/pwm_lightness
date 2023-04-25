@@ -1,5 +1,5 @@
-PWM lightness curve generator & Python module
-=============================================
+PWM lightness curve generator
+=============================
 
 Generates lightness correction tables for eyeball pleasing LED brightness.
 
@@ -57,7 +57,7 @@ Pre-generate a PWM table for use on a microcontroller
    $ python3 -m pwm_lightness 88 32
    0,0,1,1,1,2,2,3,4,5,6,7,9,10,12,14,16,19,21,24,27,31,34,38,42,47,52,57,63,68,75,81,88
 
-You can use these tables as initializers in arrays in any language.
+You can use these as list or array initializers in most any language.
 
 Improve antialiased fonts or other 8-bit images
 -----------------------------------------------
