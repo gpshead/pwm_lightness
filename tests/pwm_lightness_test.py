@@ -13,18 +13,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-FileCopyrightText: 2020 Gregory P. Smith
+# SPDX-License-Identifier: Apache-2.0
+
 """Unittests for pwm_lightness."""
 
-import os
-import pwm_lightness
 import sys
 import unittest
+import pwm_lightness
 
 
 class TestPWMLightness(unittest.TestCase):
     def tearDown(self):
         pwm_lightness.clear_table_cache()
-        self.assertFalse(pwm_lightness._pwm_tables)
+        self.assertFalse(pwm_lightness._pwm_tables)  # pylint: disable=protected-access
 
     def test_get_pwm_table_defaults(self):
         byte_curve = pwm_lightness.get_pwm_table(255)
@@ -63,7 +66,8 @@ class TestPWMLightness(unittest.TestCase):
         self.assertIsNot(curve_300_a, curve_300_c)
 
     @unittest.skipIf(not sys.executable, "sys.executable required")
-    def test_command_line_interface_help(self):
+    def test_cli_help(self):
+        # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
 
         proc = subprocess.run(
@@ -76,6 +80,7 @@ class TestPWMLightness(unittest.TestCase):
 
     @unittest.skipIf(not sys.executable, "sys.executable required")
     def test_command_line_interface(self):
+        # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
 
         # 0 is an invalid max_output value, error
