@@ -13,6 +13,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-FileCopyrightText: 2020 Gregory P. Smith
+# SPDX-License-Identifier: Apache-2.0
+
 """Unittests for pwm_lightness."""
 
 import sys
