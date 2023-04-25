@@ -1,1 +1,1 @@
-include LICENSE README.md pyproject.toml
+include LICENSE README.rst pyproject.toml

@@ -15,8 +15,10 @@
 # limitations under the License.
 """Unittests for pwm_lightness."""
 
-import unittest
+import os
 import pwm_lightness
+import sys
+import unittest
 
 
 class TestPWMLightness(unittest.TestCase):
@@ -60,6 +62,41 @@ class TestPWMLightness(unittest.TestCase):
         self.assertEqual(curve_300_a, curve_300_c)
         self.assertIsNot(curve_300_a, curve_300_c)
 
+    @unittest.skipIf(not sys.executable, "sys.executable required")
+    def test_command_line_interface_help(self):
+        import subprocess
 
-if __name__ == '__main__':
+        proc = subprocess.run(
+            [sys.executable, "-m", "pwm_lightness"],
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+        )
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn(b"Usage: ", proc.stderr)
+
+    @unittest.skipIf(not sys.executable, "sys.executable required")
+    def test_command_line_interface(self):
+        import subprocess
+
+        # 0 is an invalid max_output value, error
+        proc = subprocess.run(
+            [sys.executable, "-m", "pwm_lightness", "0", "255"],
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+        )
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn(b"Usage: ", proc.stderr)
+        # success
+        proc = subprocess.run(
+            [sys.executable, "-m", "pwm_lightness", "42"],
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+        )
+        self.assertEqual(proc.returncode, 0)
+        self.assertNotIn(b"Usage:", proc.stderr)
+        self.assertTrue(proc.stdout.startswith(b"0,"), proc.stdout)
+        self.assertIn(b",42", proc.stdout)
+
+
+if __name__ == "__main__":
     unittest.main()
