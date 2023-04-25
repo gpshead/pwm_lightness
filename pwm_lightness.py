@@ -92,6 +92,7 @@ def _cie1931(l_star: float) -> float:
 
 if __name__ == "__main__":
     import sys
+
     try:
         _table = get_pwm_table(*(int(arg) for arg in sys.argv[1:]))
     except Exception:

@@ -65,6 +65,7 @@ class TestPWMLightness(unittest.TestCase):
     def test_cli_help(self):
         # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
+
         proc = subprocess.run(
             [sys.executable, "-m", "pwm_lightness"],
             stderr=subprocess.PIPE,
@@ -77,6 +78,7 @@ class TestPWMLightness(unittest.TestCase):
     def test_command_line_interface(self):
         # pylint: disable=import-outside-toplevel,subprocess-run-check
         import subprocess
+
         # 0 is an invalid max_output value, error
         proc = subprocess.run(
             [sys.executable, "-m", "pwm_lightness", "0", "255"],
